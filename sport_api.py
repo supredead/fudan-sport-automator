@@ -12,8 +12,9 @@ def _get_arg_from_env_or_json(arg_name, default=None):
         try:
             with open('settings.json', 'r', encoding='utf-8') as fp:
                 value = json.load(fp)[arg_name]
-        except Exception:
-            value = default
+        except FileNotFoundError:
+            print("ERROR: 未导入数据，请检查settings路径")
+            exit(1)
     return value
 
 
