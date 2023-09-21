@@ -1,6 +1,6 @@
 # 复旦自动刷锻脚本
 
-使用光华智慧体育小程序的 API 实现自动刷锻。
+使用复旦智慧体育小程序的 API 实现自动刷锻。
 
 **GitHub Actions 因为运行时间过长，占用服务器资源，因此被禁用。没有计算机基础的同学请直接参考教程一节。**
 
@@ -81,3 +81,6 @@ from browers only 改为 from all processes。
 ### Issue
 
 如果在使用过程中遇到了问题，请点击页面顶部的 Issue - New Issue，并在出现的文本框中描述你的问题。
+
+## 致谢
+[@habacat](https://github.com/habacat)提供的小程序源码
