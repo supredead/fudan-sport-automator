@@ -1,5 +1,5 @@
 import random
-from math import pi
+from math import pi, degrees
 
 from geopy.distance import distance
 from geopy.point import Point
@@ -8,10 +8,6 @@ l = 86.96
 r = 36.5
 c = pi * r
 d = 400
-
-
-def rad2ang(rad):
-    return (rad / pi) * 180
 
 
 class Playground:
@@ -27,7 +23,7 @@ class Playground:
         x = x % d
 
         if x < c:
-            angle = self.direction - 90 + rad2ang(x / r)
+            angle = self.direction - 90 + degrees(x / r)
             return distance(meters=r).destination(self.center_1, angle)
         x = x - c
         if x < l:
@@ -35,7 +31,7 @@ class Playground:
             return distance(meters=x).destination(self.anchor_1, angle)
         x = x - l
         if x < c:
-            angle = self.direction + 90 + rad2ang(x / r)
+            angle = self.direction + 90 + degrees(x / r)
             return distance(meters=r).destination(self.center_2, angle)
         x = x - c
         return distance(meters=x).destination(self.anchor_2, self.direction)

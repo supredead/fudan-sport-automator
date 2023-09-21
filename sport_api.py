@@ -1,16 +1,18 @@
+import hashlib
 import json
 import os
-import hashlib
+from pathlib import Path
+
 import aiohttp
 from geopy.point import Point
 
 
-def _get_arg_from_env_or_json(arg_name, default=None):
+def _get_arg_from_env_or_json(arg_name, default=''):
     value = os.getenv(arg_name)
     if value is None or not value.strip():
-        # Try loading from setting.json
+        # Try loading from settings.json
         try:
-            with open('settings.json', 'r', encoding='utf-8') as fp:
+            with open(Path(__file__).parent / 'settings.json', 'r', encoding='utf-8') as fp:
                 value = json.load(fp)[arg_name]
         except FileNotFoundError:
             print("ERROR: 未导入数据，请检查settings路径")
@@ -96,11 +98,11 @@ def sign_param(params):
     keys = sorted(params.keys())
     arr = []
     for k in keys:
-        arr.append(params[k])
+        arr.append(str(params[k]))
     vals = ",".join(arr)
-    str = "moveclub123123123" + vals
+    s = "moveclub123123123" + vals
     md5_hash = hashlib.md5()
-    md5_hash.update(str.encode('utf-8'))
+    md5_hash.update(s.encode('utf-8'))
     params["sign"] = md5_hash.hexdigest()
     return params
 
