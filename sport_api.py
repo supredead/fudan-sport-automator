@@ -1,16 +1,17 @@
 import json
 import os
+from pathlib import Path
 
 import aiohttp
 from geopy.point import Point
 
 
-def _get_arg_from_env_or_json(arg_name, default=None):
+def _get_arg_from_env_or_json(arg_name, default=''):
     value = os.getenv(arg_name)
     if value is None or not value.strip():
-        # Try loading from setting.json
+        # Try loading from settings.json
         try:
-            with open('settings.json', 'r', encoding='utf-8') as fp:
+            with open(Path(__file__).parent / 'settings.json', 'r', encoding='utf-8') as fp:
                 value = json.load(fp)[arg_name]
         except Exception:
             value = default
