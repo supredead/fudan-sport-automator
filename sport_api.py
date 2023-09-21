@@ -98,11 +98,11 @@ def sign_param(params):
     keys = sorted(params.keys())
     arr = []
     for k in keys:
-        arr.append(params[k])
+        arr.append(str(params[k]))
     vals = ",".join(arr)
-    str = "moveclub123123123" + vals
+    s = "moveclub123123123" + vals
     md5_hash = hashlib.md5()
-    md5_hash.update(str.encode('utf-8'))
+    md5_hash.update(s.encode('utf-8'))
     params["sign"] = md5_hash.hexdigest()
     return params
 
