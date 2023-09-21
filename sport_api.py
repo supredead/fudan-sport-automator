@@ -1,3 +1,4 @@
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -13,8 +14,9 @@ def _get_arg_from_env_or_json(arg_name, default=''):
         try:
             with open(Path(__file__).parent / 'settings.json', 'r', encoding='utf-8') as fp:
                 value = json.load(fp)[arg_name]
-        except Exception:
-            value = default
+        except FileNotFoundError:
+            print("ERROR: 未导入数据，请检查settings路径")
+            exit(1)
     return value
 
 
@@ -22,6 +24,7 @@ async def get_routes():
     route_url = 'https://sport.fudan.edu.cn/sapi/route/list'
     params = {'userid': _get_arg_from_env_or_json('USER_ID'),
               'token': _get_arg_from_env_or_json('FUDAN_SPORT_TOKEN')}
+    params = sign_param(params)
     async with aiohttp.request('GET', route_url, params=params) as response:
         data = await response.json()
     try:
@@ -52,6 +55,7 @@ class FudanAPI:
                   'device': self.device,
                   'lng': self.route.start_point.longitude,
                   'lat': self.route.start_point.latitude}
+        params = sign_param(params)
         async with aiohttp.request('GET', start_url, params=params) as response:
             data = await response.json()
         try:
@@ -67,6 +71,7 @@ class FudanAPI:
                   'run_id': self.run_id,
                   'lng': point.longitude,
                   'lat': point.latitude}
+        params = sign_param(params)
         async with aiohttp.request('GET', update_url, params=params) as response:
             try:
                 data = await response.json()
@@ -83,9 +88,23 @@ class FudanAPI:
                   'device': self.device,
                   'lng': point.longitude,
                   'lat': point.latitude}
+        params = sign_param(params)
         async with aiohttp.request('GET', finish_url, params=params) as response:
             data = await response.json()
         return data['message']
+
+
+def sign_param(params):
+    keys = sorted(params.keys())
+    arr = []
+    for k in keys:
+        arr.append(params[k])
+    vals = ",".join(arr)
+    str = "moveclub123123123" + vals
+    md5_hash = hashlib.md5()
+    md5_hash.update(str.encode('utf-8'))
+    params["sign"] = md5_hash.hexdigest()
+    return params
 
 
 class FudanRoute:
