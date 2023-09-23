@@ -106,12 +106,15 @@ from browers only 改为 from all processes。
 
 ![](https://github.com/fsy2001/fudan-sport-automator/assets/55231108/85f64e7e-5f2e-4c52-9899-8172f79a9cbc)
 
-### Issue
+### 反馈与讨论
 
-如果在使用过程中遇到了问题，请点击页面顶部的 Issue - New Issue，并在出现的文本框中描述你的问题。
+如果在使用过程中遇到了问题，或者希望提出建议，请点击页面顶部的 Discussions - New Discussion，选择一个类别，并描述你的问题。
+
+如果你**确信**脚本有 Bug，可以点击页面顶部的 Issue - New Issue 来新建一个 Issue。
 
 ## 致谢
-[@habacat](https://github.com/habacat)提供的小程序源码
+
+感谢 [@habacat](https://github.com/habacat) 提供的小程序源码
 
 
 
