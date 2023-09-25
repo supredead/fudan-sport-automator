@@ -1,7 +1,6 @@
 import hashlib
 import json
 import os
-from pathlib import Path
 
 import requests
 from geopy.point import Point
@@ -17,7 +16,7 @@ def read_arg(arg_name, default=''):
     if value is None or not value.strip():
         # Try loading from settings.json
         try:
-            with open(Path(__file__).parent / 'settings.json', 'r', encoding='utf-8') as fp:
+            with open('settings.json', 'r', encoding='utf-8') as fp:
                 value = json.load(fp)[arg_name]
         except FileNotFoundError:
             print("ERROR: 未导入数据，请检查settings路径")

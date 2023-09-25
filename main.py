@@ -18,7 +18,6 @@ if __name__ == '__main__':
         supported_routes = filter(lambda r: r.id in playgrounds, routes)
         for route in supported_routes:
             route.pretty_print()
-        exit()
 
     if args.route:
         # set distance
