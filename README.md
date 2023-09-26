@@ -115,31 +115,31 @@ from browers only 改为 from all processes。
 
 ![image](https://github.com/BiologyHazard/fudan-sport-automator/assets/44924110/651d5887-2514-4d8b-aec7-74f3209aa4f7)
 
-1. 点击右侧“创建基本任务…”，填写名称和描述，点击“下一页”。
+2. 点击右侧“创建基本任务…”，填写名称和描述，点击“下一页”。
 
 ![image](https://github.com/BiologyHazard/fudan-sport-automator/assets/44924110/ed8f2dd2-7822-45e8-9a30-9c9bbca4b8eb)
 
-1. “希望该任务何时开始”选择“每天”，点击“下一页”。
+3. “希望该任务何时开始”选择“每天”，点击“下一页”。
 
 ![image](https://github.com/BiologyHazard/fudan-sport-automator/assets/44924110/8e404cfc-863a-45bf-9485-1653787b822f)
 
-1. 设置开始时间为您希望运行程序的时间，点击“下一页”。
+4. 设置开始时间为您希望运行程序的时间，点击“下一页”。
 
 ![image](https://github.com/BiologyHazard/fudan-sport-automator/assets/44924110/278be648-ff86-4830-b24d-d84795a2e131)
 
-1. “操作”选择“启动程序”，点击“下一页”。
+5. “操作”选择“启动程序”，点击“下一页”。
 
 ![image](https://github.com/BiologyHazard/fudan-sport-automator/assets/44924110/188def7a-4ca5-4b9d-91bb-ed36f636ef8e)
 
-1. “程序或脚本”填写 `main.exe` 的文件路径，“添加参数”填写[运行教程](#运行教程)中提示的参数（比如 `-r 28`），“起始于”填写 `main.exe` 所在目录，如下图。
+6. “程序或脚本”填写 `main.exe` 的文件路径，“添加参数”填写[运行教程](#运行教程)中提示的参数（比如 `-r 28`），“起始于”填写 `main.exe` 所在目录，如下图。
 
 ![image](https://github.com/BiologyHazard/fudan-sport-automator/assets/44924110/656e1d28-cb71-4a85-9620-dccdaaf3a3c7)
 
 ![image](https://github.com/BiologyHazard/fudan-sport-automator/assets/44924110/7f29c895-9371-4429-bc76-53883794d847)
 
-1. 点击“下一步”，点击“完成”。
+7. 点击“下一步”，点击“完成”。
 
-1. 您应该能在“任务计划程序库”中看到刚刚添加的计划任务。
+8. 您应该能在“任务计划程序库”中看到刚刚添加的计划任务。
 
 ![image](https://github.com/BiologyHazard/fudan-sport-automator/assets/44924110/156b39f8-adda-4672-89d5-a95bc1314ab0)
 
