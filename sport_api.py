@@ -1,32 +1,37 @@
 import hashlib
 import json
 import os
-from pathlib import Path
 
-import aiohttp
+import requests
 from geopy.point import Point
 
+# disable HTTPS warnings as it might encounter certificate verification failure
+import urllib3
 
-def _get_arg_from_env_or_json(arg_name, default=''):
+urllib3.disable_warnings()
+
+
+def read_arg(arg_name, default=''):
     value = os.getenv(arg_name)
     if value is None or not value.strip():
         # Try loading from settings.json
         try:
-            with open(Path(__file__).parent / 'settings.json', 'r', encoding='utf-8') as fp:
+            with open('settings.json', 'r', encoding='utf-8') as fp:
                 value = json.load(fp)[arg_name]
         except FileNotFoundError:
             print("ERROR: 未导入数据，请检查settings路径")
             exit(1)
+        except Exception:
+            return default
     return value
 
 
-async def get_routes():
+def get_routes():
     route_url = 'https://sport.fudan.edu.cn/sapi/route/list'
-    params = {'userid': _get_arg_from_env_or_json('USER_ID'),
-              'token': _get_arg_from_env_or_json('FUDAN_SPORT_TOKEN')}
+    params = {'userid': read_arg('USER_ID'),
+              'token': read_arg('FUDAN_SPORT_TOKEN')}
     params = sign_param(params)
-    async with aiohttp.request('GET', route_url, params=params) as response:
-        data = await response.json()
+    data = requests.get(route_url, params=params, verify=False).json()
     try:
         route_data_list = filter(lambda route: route['points'] is not None and len(route['points']) == 1,
                                  data['data']['list'])
@@ -39,13 +44,13 @@ async def get_routes():
 class FudanAPI:
     def __init__(self, route):
         self.route = route
-        self.user_id = _get_arg_from_env_or_json('USER_ID')
-        self.token = _get_arg_from_env_or_json('FUDAN_SPORT_TOKEN')
-        self.system = _get_arg_from_env_or_json('PLATFORM_OS', 'iOS 2016.3.1')
-        self.device = _get_arg_from_env_or_json('PLATFORM_DEVICE', 'iPhone|iPhone 13<iPhone14,5>')
+        self.user_id = read_arg('USER_ID')
+        self.token = read_arg('FUDAN_SPORT_TOKEN')
+        self.system = read_arg('PLATFORM_OS', 'iOS 2016.3.1')
+        self.device = read_arg('PLATFORM_DEVICE', 'iPhone|iPhone 13<iPhone14,5>')
         self.run_id = None
 
-    async def start(self):
+    def start(self):
         start_url = 'https://sport.fudan.edu.cn/sapi/run/start'
         params = {'userid': self.user_id,
                   'token': self.token,
@@ -56,15 +61,14 @@ class FudanAPI:
                   'lng': self.route.start_point.longitude,
                   'lat': self.route.start_point.latitude}
         params = sign_param(params)
-        async with aiohttp.request('GET', start_url, params=params) as response:
-            data = await response.json()
+        data = requests.get(start_url, params=params, verify=False).json()
         try:
             self.run_id = data['data']['run_id']
         except Exception:
             print(f"ERROR: {data['message']}")
             exit(1)
 
-    async def update(self, point):
+    def update(self, point):
         update_url = 'https://sport.fudan.edu.cn/sapi/run/point'
         params = {'userid': self.user_id,
                   'token': self.token,
@@ -72,14 +76,14 @@ class FudanAPI:
                   'lng': point.longitude,
                   'lat': point.latitude}
         params = sign_param(params)
-        async with aiohttp.request('GET', update_url, params=params) as response:
-            try:
-                data = await response.json()
-                return data['message']
-            except Exception:
-                return await response.read()
+        response = requests.get(update_url, params=params, verify=False)
+        try:
+            data = response.json()
+            return data['message']
+        except:
+            return response.text
 
-    async def finish(self, point):
+    def finish(self, point):
         finish_url = 'https://sport.fudan.edu.cn/sapi/run/finish'
         params = {'userid': self.user_id,
                   'token': self.token,
@@ -89,8 +93,8 @@ class FudanAPI:
                   'lng': point.longitude,
                   'lat': point.latitude}
         params = sign_param(params)
-        async with aiohttp.request('GET', finish_url, params=params) as response:
-            data = await response.json()
+        response = requests.get(finish_url, params, verify=False)
+        data = json.loads(response.text)
         return data['message']
 
 

@@ -48,40 +48,75 @@ from browers only 改为 from all processes。
 
 **注意，目前 Token 的有效期为 3 天。**
 
-获取到 User ID 和 Token 后，按照下文的说明本地运行脚本。
-
 ### 运行教程
+
+获取到 User ID 和 Token 后，按照下文的说明本地运行脚本。
 
 点击页面右侧的 Release 链接（带有绿色 Latest 标签），然后在页面下方的 Assets 中选择一个下载。Windows 系统下载 `windows.zip`
 ，macOS 系统下载 `macos.zip`。下载后，解压得到一个 `main` 文件夹。
 
 #### Windows
 
-打开 `main` 文件夹，右键单击文件 `settings.json`，打开方式 - 记事本，然后将其中 `USER_ID` 和 `FUDAN_SPORT_TOKEN`
-两项后面的内容改成刚刚抓包抓到的值（保留引号）。
+1. 打开下载好的 `main` 文件夹，右键单击文件 `settings.json`，打开方式 - 记事本。
 
-按快捷键 `Win + R`，输入 `cmd` 回车，会打开一个黑色窗口。输入 `cd + [空格]`，然后把 `main` 文件夹拖拽到黑色窗口内，按回车。
+![](https://github.com/fsy2001/fudan-sport-automator/assets/55231108/81a1a320-3d85-4236-a204-4380ee4545ea)
 
-- 输入命令 `.\main.exe -v` 并按回车，可以查看刷锻路线列表。
-- 输入命令 `.\main.exe -r 28` 并按回车，可以开始刷锻。需要参考上面一条命令的输出，把 28
-  替换成你需要的数字。这条命令需要执行数分钟，执行结束后会输出 `FINISHED: ***` 字样。
+2. 将文件中 `USER_ID` 和 `FUDAN_SPORT_TOKEN`
+两项后面的内容改成刚刚抓包抓到的值（保留引号），然后保存并关闭窗口。
+
+![](https://github.com/fsy2001/fudan-sport-automator/assets/55231108/810afd57-43ff-4904-86a2-1865b6564b31)
+
+3. 按快捷键 `Win + R`，输入 `cmd` 回车，会打开一个黑色窗口。
+
+![](https://github.com/fsy2001/fudan-sport-automator/assets/55231108/76d4305f-c938-4b23-bb78-dd2390179e9f)
+
+4. 输入 `cd + [空格]`，然后把 `main` 文件夹拖拽到黑色窗口内，按回车。
+
+![](https://github.com/fsy2001/fudan-sport-automator/assets/55231108/3c7ab9db-9212-468b-b50b-c8f92538308e)
+
+5. 依次输入以下命令（命令输入完成后按回车执行）：
+   - `.\main.exe -v` （查看所有可以刷锻的路径）
+   - `.\main.exe -r [id]`（`id` 是你要刷锻的路径编号，在下图中为 33，意思是南区田径场课外活动，图里不在刷段时间，如果在刷段时间是可以正常刷锻的）
+
+![](https://github.com/fsy2001/fudan-sport-automator/assets/55231108/aacd8fc6-4bb0-4b40-bf11-ae7837bba047)
+
 
 #### macOS
 
-打开 `main` 文件夹，右键单击文件 `settings.json`，打开方式 - 文本编辑，然后将其中 `USER_ID` 和 `FUDAN_SPORT_TOKEN`
-两项后面的内容改成刚刚抓包抓到的值（保留引号）。
+1. 打开下载好的 `main` 文件夹，右键单击文件 `settings.json`，打开方式 - 文本编辑。
 
-按快捷键 `Command + [空格]`，输入「终端」，然后打开终端 App，是一个黑色/白色的窗口。输入 `cd + [空格]`，然后把 `main`
-文件夹拖拽到窗口内，按回车。
+![](https://github.com/fsy2001/fudan-sport-automator/assets/55231108/0a1557d3-e858-4d7d-b37e-ce7b8a59d0cc)
 
-- 输入命令 `./main -v` 并按回车，可以查看刷锻路线列表。
-- 输入命令 `./main -r 28` 并按回车，可以开始刷锻。需要参考上面一条命令的输出，把 28
-  替换成你需要的数字。这条命令需要执行数分钟，执行结束后会输出 `FINISHED: ***` 字样。
-- 如果出现 `permission denied` 报错，则输入命令 `chmod +x ./main` 并按回车，然后重新执行命令。
+2. 将文件中 `USER_ID` 和 `FUDAN_SPORT_TOKEN`
+两项后面的内容改成刚刚抓包抓到的值（保留引号），然后保存并关闭窗口。
 
-### Issue
+![](https://github.com/fsy2001/fudan-sport-automator/assets/55231108/f7686126-0361-4e2d-bc71-8a8ad228a91a)
 
-如果在使用过程中遇到了问题，请点击页面顶部的 Issue - New Issue，并在出现的文本框中描述你的问题。
+3. 按快捷键 `Command + [空格]`，输入「终端」，然后打开终端 App，是一个黑色/白色的窗口。
+
+![](https://github.com/fsy2001/fudan-sport-automator/assets/55231108/515e7c36-437a-4c80-834b-7d59388ed1aa)
+
+4. 输入 `cd + [空格]`，然后把 `main` 文件夹拖拽到窗口内，按回车。
+
+![](https://github.com/fsy2001/fudan-sport-automator/assets/55231108/bb0c16e1-ea9a-436a-8114-6fb492d407a9)
+
+5. 依次输入以下命令（命令输入完成后按回车执行）：
+   - `chmod +x ./main` （只有第一次执行要输入，之后无须输入）
+   - `./main -v` （查看所有可以刷锻的路径）
+   - `./main -r [id]`（`id` 是你要刷锻的路径编号，在下图中为 33，意思是南区田径场课外活动）
+
+![](https://github.com/fsy2001/fudan-sport-automator/assets/55231108/85f64e7e-5f2e-4c52-9899-8172f79a9cbc)
+
+### 反馈与讨论
+
+如果在使用过程中遇到了问题，或者希望提出建议，请点击页面顶部的 Discussions - New Discussion，选择一个类别，并描述你的问题。
+
+如果你**确信**脚本有 Bug，可以点击页面顶部的 Issue - New Issue 来新建一个 Issue。
 
 ## 致谢
-[@habacat](https://github.com/habacat)提供的小程序源码
+
+感谢 [@habacat](https://github.com/habacat) 提供的小程序源码
+
+
+
+
