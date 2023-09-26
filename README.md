@@ -1,6 +1,7 @@
 # 复旦自动刷锻脚本
 
 使用复旦智慧体育小程序的 API 实现自动刷锻。
+**请自行承担使用第三方软件刷锻的风险**
 
 **GitHub Actions 因为运行时间过长，占用服务器资源，因此被禁用。没有计算机基础的同学请直接参考教程一节。**
 
@@ -8,12 +9,12 @@
 
 本节仅供本地配置有 Python 运行环境的用户使用。没有安装 Python 的用户请参考教程。
 
-- 安装依赖：`pip install -r requirements.txt`
-- 修改 `settings.json` 文件中的 `USER_ID, FUDAN_SPORT_TOKEN` 变量，需要在小程序内抓包获得，详请查看“抓包教程”章节。
-- 查看刷锻路线列表：`python main.py --view`
-- 自动刷锻：`python main.py --route <route_id>`，其中 `route_id` 是刷锻路线列表中的 ID。
-- 可以设置里程和时间，如 `--distance 1200 --time 360`，更多选项请使用 `python main.py --help` 查看。
-- （附加）环境变量 `PLATFORM_OS, PLATFORM_DEVICE` 可以设置刷锻的设备标识，默认值为 `iOS 2016.3.1`
+1. 安装依赖：`pip install -r requirements.txt`
+1. 修改 `settings.json` 文件中的 `USER_ID, FUDAN_SPORT_TOKEN` 变量，需要在小程序内抓包获得，详请查看“抓包教程”章节。
+1. 查看刷锻路线列表：`python main.py --view`
+1. 自动刷锻：`python main.py --route <route_id>`，其中 `route_id` 是刷锻路线列表中的 ID。
+1. 可以设置里程和时间，如 `--distance 1200 --time 360`，更多选项请使用 `python main.py --help` 查看。
+1. （附加）环境变量 `PLATFORM_OS, PLATFORM_DEVICE` 可以设置刷锻的设备标识，默认值为 `iOS 2016.3.1`
   、`iPhone|iPhone 13<iPhone14,5>`。
 
 ## 说明
