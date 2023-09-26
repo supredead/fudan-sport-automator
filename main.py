@@ -45,7 +45,7 @@ async def main():
         else:
             raise ValueError(f'不存在id为{args.route}的route')
 
-        # delay random time, used in GitHub Action deployment
+        # delay random time
         if args.delay:
             sleep_time = random.randint(0, 240)
             time.sleep(sleep_time)
@@ -60,7 +60,7 @@ async def main():
             current_distance += distance / total_time
             message, _ = await asyncio.gather(
                 automator.update(playground.random_offset(current_distance)), asyncio.sleep(1))
-            print(f"UPDATE: {message} ({current_distance}m / {distance}m)")
+            print(f"UPDATE: {message} ({current_distance:2f}m / {distance:.2f}m)")
         finish_message = await automator.finish(playground.coordinate(distance))
         print(f"FINISHED: {finish_message}")
 
