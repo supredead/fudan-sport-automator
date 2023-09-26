@@ -1,19 +1,20 @@
 # 复旦自动刷锻脚本
 
 使用复旦智慧体育小程序的 API 实现自动刷锻。
+**请自行承担使用第三方软件刷锻的风险**
 
 **GitHub Actions 因为运行时间过长，占用服务器资源，因此被禁用。没有计算机基础的同学请直接参考教程一节。**
 
 ## 使用
 
-本节仅供本地配置有 Python 运行环境的用户使用。没有安装 Python 的用户请参考教程。
+本节仅供本地配置有 Python 运行环境的用户使用。没有安装 Python 的用户请参考[教程](#教程)。
 
-- 安装依赖：`pip install -r requirements.txt`
-- 修改 `settings.json` 文件中的 `USER_ID, FUDAN_SPORT_TOKEN` 变量，需要在小程序内抓包获得，详请查看“抓包教程”章节。
-- 查看刷锻路线列表：`python main.py --view`
-- 自动刷锻：`python main.py --route <route_id>`，其中 `route_id` 是刷锻路线列表中的 ID。
-- 可以设置里程和时间，如 `--distance 1200 --time 360`，更多选项请使用 `python main.py --help` 查看。
-- （附加）环境变量 `PLATFORM_OS, PLATFORM_DEVICE` 可以设置刷锻的设备标识，默认值为 `iOS 2016.3.1`
+1. 安装依赖：`pip install -r requirements.txt`
+1. 修改 `settings.json` 文件中的 `USER_ID, FUDAN_SPORT_TOKEN` 变量，需要在小程序内抓包获得[抓包教程](#抓包教程)章节。
+1. 查看刷锻路线列表：`python main.py --view`
+1. 自动刷锻：`python main.py --route <route_id>`，其中 `route_id` 是刷锻路线列表中的 ID。
+1. 可以设置里程和时间，如 `--distance 1200 --time 360`，更多选项请使用 `python main.py --help` 查看。
+1. （可选）环境变量 `PLATFORM_OS, PLATFORM_DEVICE` 可以设置刷锻的设备标识，默认值为 `iOS 2016.3.1`
   、`iPhone|iPhone 13<iPhone14,5>`。
 
 ## 说明
@@ -106,7 +107,45 @@ from browers only 改为 from all processes。
 
 ![](https://github.com/fsy2001/fudan-sport-automator/assets/55231108/85f64e7e-5f2e-4c52-9899-8172f79a9cbc)
 
-### 反馈与讨论
+### 定时启动
+
+#### Windows（使用任务计划程序）
+
+1. 按快捷键 Win + R，输入 taskschd.msc 回车。
+
+![image](https://github.com/BiologyHazard/fudan-sport-automator/assets/44924110/651d5887-2514-4d8b-aec7-74f3209aa4f7)
+
+1. 点击右侧“创建基本任务…”，填写名称和描述，点击“下一页”。
+
+![image](https://github.com/BiologyHazard/fudan-sport-automator/assets/44924110/ed8f2dd2-7822-45e8-9a30-9c9bbca4b8eb)
+
+1. “希望该任务何时开始”选择“每天”，点击“下一页”。
+
+![image](https://github.com/BiologyHazard/fudan-sport-automator/assets/44924110/8e404cfc-863a-45bf-9485-1653787b822f)
+
+1. 设置开始时间为您希望运行程序的时间，点击“下一页”。
+
+![image](https://github.com/BiologyHazard/fudan-sport-automator/assets/44924110/278be648-ff86-4830-b24d-d84795a2e131)
+
+1. “操作”选择“启动程序”，点击“下一页”。
+
+![image](https://github.com/BiologyHazard/fudan-sport-automator/assets/44924110/188def7a-4ca5-4b9d-91bb-ed36f636ef8e)
+
+1. “程序或脚本”填写 `main.exe` 的文件路径，“添加参数”填写[运行教程](#运行教程)中提示的参数（比如 `-r 28`），“起始于”填写 `main.exe` 所在目录，如下图。
+
+![image](https://github.com/BiologyHazard/fudan-sport-automator/assets/44924110/656e1d28-cb71-4a85-9620-dccdaaf3a3c7)
+
+![image](https://github.com/BiologyHazard/fudan-sport-automator/assets/44924110/7f29c895-9371-4429-bc76-53883794d847)
+
+1. 点击“下一步”，点击“完成”。
+
+1. 您应该能在“任务计划程序库”中看到刚刚添加的计划任务。
+
+![image](https://github.com/BiologyHazard/fudan-sport-automator/assets/44924110/156b39f8-adda-4672-89d5-a95bc1314ab0)
+
+
+
+## 反馈与讨论
 
 如果在使用过程中遇到了问题，或者希望提出建议，请点击页面顶部的 Discussions - New Discussion，选择一个类别，并描述你的问题。
 
@@ -115,7 +154,3 @@ from browers only 改为 from all processes。
 ## 致谢
 
 感谢 [@habacat](https://github.com/habacat) 提供的小程序源码
-
-
-
-
